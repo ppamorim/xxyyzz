@@ -23,5 +23,7 @@ Mantive a minima quantidade possível de bibliotecas no projeto, no entanto, uti
 # Misc
 
 O projeto utiliza o estilo de código da Square, sendo 2 espaços para as indentações.
-É o mais recomendado para Android pois facilita a leitura e organização do código (mais compacto)
-Proguard está ativado para obfuscar e reduzir o tamanho de métodos com o objetivo de evitar o estouro de DEX.
+
+No momento é o mais recomendado para Android pois facilita a leitura e organização do código (mais compacto).
+
+Proguard está ativado para obfuscar e reduzir a quantidade de métodos com o objetivo de evitar o estouro de DEX.
