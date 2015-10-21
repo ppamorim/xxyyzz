@@ -19,8 +19,4 @@
         </activity>
     </application>
 
-    <instrumentation
-        android:name="android.support.test.runner.AndroidJUnitRunner"
-        android:targetPackage="org.frutilla"/>
-
 </manifest>

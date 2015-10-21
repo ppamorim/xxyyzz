@@ -1,6 +1,10 @@
 <resources>
   <string name="app_name">Meus Pedidos Test</string>
+  <string name="user_config_message">Olá, candidado. Seja bem-vindo ao nosso formulário de cadastro. Abaixo, preencha os seguintes campos:</string>
 
-  <string name="hello_world">Hello world!</string>
-  <string name="action_settings">Settings</string>
+  <string name="name">Nome</string>
+  <string name="email">Email</string>
+
+  <string name="next">Avançar</string>
+
 </resources>
