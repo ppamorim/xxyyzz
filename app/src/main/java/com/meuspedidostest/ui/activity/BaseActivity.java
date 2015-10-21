@@ -1,9 +1,10 @@
 package com.meuspedidostest.ui.activity;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.Fragment;
 import butterknife.Bind;
 import com.meuspedidostest.R;
+import com.meuspedidostest.domain.model.User;
 import com.meuspedidostest.ui.fragment.UserDataFragment;
 import com.meuspedidostest.ui.fragment.UserSpecsFragment;
 import com.meuspedidostest.ui.view.NonSwipeableViewPager;
@@ -57,6 +58,13 @@ public class BaseActivity extends AbstractActivity {
       return false;
     }
     return true;
+  }
+
+  public void notifyUser(User user) {
+    Fragment page = ((FragmentPagerItemAdapter) viewPager.getAdapter()).getPage(1);
+    if(page != null && page instanceof UserSpecsFragment) {
+      ((UserSpecsFragment) page).notifyUser(user);
+    }
   }
 
 }
