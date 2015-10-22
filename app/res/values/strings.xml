@@ -3,7 +3,8 @@
 
   <string name="user_config_message">Olá, candidado. Seja bem-vindo ao nosso formulário de cadastro. Abaixo, preencha os seguintes campos:</string>
   <string name="user_specs_message">Olá, %1$s! Agora vamos avaliar seus conhecimentos. Para isso, classifique cada linguagem abaixo de 0 a 10</string>
-  <string name="generic_email">Conteúdo: Obrigado por se candidatar, assim que tivermos uma vaga disponível para programador %1$s entraremos em contato.</string>
+  <string name="generic_email">Obrigado por se candidatar, assim que tivermos uma vaga disponível para programador %1$s entraremos em contato.</string>
+  <string name="feedback_message">Obrigado por se candidatar </string>
 
   <string name="name">Nome</string>
   <string name="email">Email</string>
@@ -11,9 +12,15 @@
   <string name="next">Avançar</string>
   <string name="finish">Concluir</string>
 
+  <string name="choose_email_client">Escolha um cliente de email</string>
+
   <string name="empty_name_error">Digite o seu nome</string>
   <string name="empty_email_error">Digite o seu email</string>
   <string name="invalidate_email_error">Email inválido</string>
+
+  <string name="front_end">Front-End</string>
+  <string name="back_end">Back-End</string>
+  <string name="mobile">Mobile</string>
 
   <string-array name="specs">
     <item>HTML</item>

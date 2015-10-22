@@ -17,6 +17,10 @@
         android:id="@+id/seek_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:dsb_indicatorTextAppearance="@style/CustomFloaterTextAppearance"
+        app:dsb_indicatorColor="@color/amber"
+        app:dsb_progressColor="@color/amber_dark"
+        app:dsb_trackColor="@color/amber_dark"
         app:dsb_min="0"
         app:dsb_max="10"/>
 

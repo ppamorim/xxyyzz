@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 public class UserDataPresenterImpl implements UserDataPresenter {
 
-  private Pattern pattern = Pattern.compile(StringPatterns.EMAIL_PATTERN);
+  private static final Pattern pattern = Pattern.compile(StringPatterns.EMAIL_PATTERN);
 
   private View view;
   private User user;

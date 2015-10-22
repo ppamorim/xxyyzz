@@ -3,7 +3,9 @@ package com.meuspedidostest.ui.presenter;
 import android.content.Context;
 import com.meuspedidostest.R;
 import com.meuspedidostest.domain.interaction.GetEmailSender;
+import com.meuspedidostest.domain.model.Email;
 import com.meuspedidostest.domain.model.Spec;
+import com.meuspedidostest.domain.model.User;
 import com.meuspedidostest.ui.view.SpecView;
 import java.util.ArrayList;
 import javax.inject.Inject;
@@ -11,6 +13,7 @@ import javax.inject.Inject;
 public class UserSpecsPresenterImpl implements UserSpecsPresenter {
 
   private View view;
+  private User user;
   private GetEmailSender getEmailSender;
   private ArrayList<SpecView> specViews;
 
@@ -28,21 +31,27 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
   @Override public void initialize() {
     getEmailSender.setSpecView(specViews);
     getEmailSender.execute(new GetEmailSender.Callback() {
-      @Override public void onEmailCreated() {
 
+      @Override public void onEmailCreated(ArrayList<Email> emails) {
+        notifySendEmailSuccess(emails);
       }
 
       @Override public void onEmailError() {
-
+        notifySendEmailFail();
       }
     });
   }
 
   @Override public void resume() { }
 
-  @Override public void pause() {
-    cleanListIfNeeded();
-    specViews = null;
+  @Override public void pause() { }
+
+  @Override public void setUser(User user) {
+    this.user = user;
+  }
+
+  @Override public User getUser() {
+    return this.user;
   }
 
   @Override public void loadSpecs(Context context) {
@@ -61,9 +70,15 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
     }
   }
 
-  private void onSendEmailSuccess() {
+  private void notifySendEmailSuccess(ArrayList<Email> emails) {
     if(view.isReady()) {
-      view.onSendEmail();
+      view.onSendEmailSuccess(emails);
+    }
+  }
+
+  private void notifySendEmailFail() {
+    if(view.isReady()) {
+      view.onSendEmailFail();
     }
   }
 
