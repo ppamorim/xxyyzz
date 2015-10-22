@@ -24,6 +24,7 @@ dependencies {
   compile 'com.ogaclejapan.smarttablayout:library:1.4.2@aar'
   compile 'com.ogaclejapan.smarttablayout:utils-v4:1.4.2@aar'
   compile 'com.github.ppamorim:recyclerrenderers:1.2.4'
+  compile 'org.adw.library:discrete-seekbar:1.0.0'
   compile 'org.parceler:parceler-api:1.0.3'
   apt 'org.parceler:parceler:1.0.3'
 

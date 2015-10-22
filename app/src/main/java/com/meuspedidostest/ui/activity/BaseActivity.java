@@ -61,6 +61,7 @@ public class BaseActivity extends AbstractActivity {
   }
 
   public void notifyUser(User user) {
+    slideToNextPage();
     Fragment page = ((FragmentPagerItemAdapter) viewPager.getAdapter()).getPage(1);
     if(page != null && page instanceof UserSpecsFragment) {
       ((UserSpecsFragment) page).notifyUser(user);
