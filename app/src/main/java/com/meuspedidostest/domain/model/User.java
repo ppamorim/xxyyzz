@@ -1,7 +1,8 @@
 package com.meuspedidostest.domain.model;
 
 /**
- * Modelo simples para representar os dados do usuario
+ * Modelo utilizado para representar
+ * os dados do usuário
  */
 public class User {
 

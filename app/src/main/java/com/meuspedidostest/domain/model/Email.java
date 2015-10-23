@@ -1,15 +1,24 @@
 package com.meuspedidostest.domain.model;
 
+/**
+ * Modelo utilizado para referênciar cada email
+ */
 public class Email {
 
-  private int type;
+  private String type;
+  private String subject;
 
-  public Email(int type) {
+  public Email(String type, String subject) {
     this.type = type;
+    this.subject = subject;
   }
 
-  public int getType() {
+  public String getType() {
     return type;
+  }
+
+  public String getSubject() {
+    return subject;
   }
 
 }

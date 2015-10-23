@@ -12,6 +12,14 @@ import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
+/**
+ * Principal atividade da aplicação, foi decidido
+ * utilizar fragments com ViewPager para facilitar
+ * a montagem e separação da estrutura MVP. Assim
+ * tratando essa Activity como um container para os
+ * elementos da tela.
+ *
+ */
 public class BaseActivity extends AbstractActivity {
 
   @Bind(R.id.view_pager) NonSwipeableViewPager viewPager;
@@ -26,12 +34,20 @@ public class BaseActivity extends AbstractActivity {
     configViewPager();
   }
 
+  /**
+   * Esta alteração evita que o aplicativo
+   * feche sem que o usuário volte para a primeira tela.
+   */
   @Override public void onBackPressed() {
     if(backToPreviousPage()) {
       super.onBackPressed();
     }
   }
 
+  /**
+   * Configura o ViewPager da Activity utilizando
+   * a biblioteca SmartTabLayout.
+   */
   private void configViewPager() {
     FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
         getSupportFragmentManager(), FragmentPagerItems.with(this)
@@ -42,6 +58,10 @@ public class BaseActivity extends AbstractActivity {
     smartTabLayout.setViewPager(viewPager);
   }
 
+  /**
+   * Executa a troca de página do ViewPager
+   * para a direita(direita).
+   */
   public void slideToNextPage() {
     int currentItem = viewPager.getCurrentItem();
     if(currentItem < viewPager.getAdapter().getCount()) {
@@ -50,6 +70,10 @@ public class BaseActivity extends AbstractActivity {
     }
   }
 
+  /**
+   * Executa a troca de página do ViewPager
+   * para a esquerda(volta).
+   */
   public boolean backToPreviousPage() {
     int currentItem = viewPager.getCurrentItem();
     if(currentItem > 0) {
@@ -60,7 +84,14 @@ public class BaseActivity extends AbstractActivity {
     return true;
   }
 
+  /**
+   * Após configurar o usuário, é necessario informar ao segundo fragment
+   * as suas informações, este método é utilizado para esconder o teclado,
+   * mover a página para a direita e declarar os dados do usuário.
+   * @param user
+   */
   public void notifyUser(User user) {
+    hideKeyboard();
     slideToNextPage();
     Fragment page = ((FragmentPagerItemAdapter) viewPager.getAdapter()).getPage(1);
     if(page != null && page instanceof UserSpecsFragment) {

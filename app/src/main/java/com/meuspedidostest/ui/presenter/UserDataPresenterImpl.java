@@ -1,13 +1,10 @@
 package com.meuspedidostest.ui.presenter;
 
+import android.util.Patterns;
 import com.meuspedidostest.domain.model.User;
-import com.meuspedidostest.util.StringPatterns;
-import java.util.regex.Pattern;
 import javax.inject.Inject;
 
 public class UserDataPresenterImpl implements UserDataPresenter {
-
-  private static final Pattern pattern = Pattern.compile(StringPatterns.EMAIL_PATTERN);
 
   private View view;
   private User user;
@@ -74,7 +71,7 @@ public class UserDataPresenterImpl implements UserDataPresenter {
   }
 
   private boolean validateEmail(String email) {
-    return pattern.matcher(email).matches();
+    return Patterns.EMAIL_ADDRESS.matcher(email).matches();
   }
 
 }

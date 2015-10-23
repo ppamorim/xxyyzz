@@ -1,5 +1,9 @@
 package com.meuspedidostest.domain.model;
 
+/**
+ * Modelo utilizado para representar os
+ * dados dos conhecimentos do usuário
+ */
 public class Spec {
 
   private int id;
