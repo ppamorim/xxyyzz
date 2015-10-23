@@ -15,8 +15,16 @@ public class Email {
     this.subject = subject;
   }
 
+  public void setType(String type) {
+    this.type = type;
+  }
+
   public String getType() {
     return type;
+  }
+
+  public void setSubject(String subject) {
+    this.subject = subject;
   }
 
   public String getSubject() {

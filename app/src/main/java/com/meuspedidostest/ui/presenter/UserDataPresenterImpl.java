@@ -62,6 +62,10 @@ public class UserDataPresenterImpl implements UserDataPresenter {
     this.user = user;
   }
 
+  @Override public User getUser() {
+    return user;
+  }
+
   @Override public void resume() { }
 
   @Override public void pause() {

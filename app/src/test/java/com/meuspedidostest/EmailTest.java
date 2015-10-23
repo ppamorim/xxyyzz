@@ -4,22 +4,29 @@ import com.meuspedidostest.domain.model.Email;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EmailTest {
 
-  @Mock Email email;
+  @Test public void testEmail() {
 
-  @Test public void test() {
-    when(email.getSubject()).thenReturn("Olá");
-    when(email.getType()).thenReturn("Mobile");
+    Email email = new Email();
 
-    Assert.assertEquals(email.getSubject(), "Olá");
+    Assert.assertNotNull(email);
+    Assert.assertNull(email.getSubject());
+    Assert.assertNull(email.getType());
+
+    email.setSubject("pp.amorim@hotmail.com");
+    email.setType("Mobile");
+
+    Assert.assertNotNull(email);
+    Assert.assertNotNull(email.getSubject());
+    Assert.assertNotNull(email.getType());
+
+    Assert.assertEquals(email.getSubject(), "pp.amorim@hotmail.com");
     Assert.assertEquals(email.getType(), "Mobile");
+
   }
 
 }

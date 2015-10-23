@@ -13,21 +13,33 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class SpecViewTest {
 
-  @Mock SpecView specView;
   @Mock Spec spec;
 
   @Test public void testSpecView() {
 
-    when(spec.getId()).thenReturn(55);
-    when(spec.getRate()).thenReturn(8);
-    when(spec.getName()).thenReturn("Maria");
+    SpecView specView = new SpecView();
 
-    when(specView.getSpec()).thenReturn(spec);
+    Assert.assertNotNull(specView);
+    Assert.assertEquals(specView.getRate(), 0);
+    Assert.assertNull(specView.getSpec());
 
-    Assert.assertEquals(specView.getSpec(), spec);
-  }
+    when(spec.getId()).thenReturn(2);
+    when(spec.getName()).thenReturn("João");
+    when(spec.getRate()).thenReturn(10);
 
-  @Test public void testSpecViewArray() {
+    specView.setRate(5);
+    specView.setSpec(spec);
+
+    Assert.assertNotNull(specView);
+    Assert.assertNotNull(specView.getRate());
+    //Assert.assertNotEquals(specView.getRate(), 0); //Retorna sempre 0 pois depende da view
+    Assert.assertNotNull(specView.getSpec());
+
+    Assert.assertTrue(specView.getSpec() == spec);
+
+    Assert.assertTrue(specView.getSpec().getId() == spec.getId());
+    Assert.assertTrue(specView.getSpec().getRate() == spec.getRate());
+    Assert.assertTrue(specView.getSpec().getName().equals(spec.getName()));
 
   }
 

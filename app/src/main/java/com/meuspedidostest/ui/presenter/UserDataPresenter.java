@@ -16,6 +16,7 @@ public interface UserDataPresenter extends Presenter {
   void setView(View view);
   void setUserData(String name, String email);
   void setUser(User user);
+  User getUser();
   interface View {
     boolean isReady();
     void onUserSuccess(User user);

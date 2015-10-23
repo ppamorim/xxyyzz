@@ -4,24 +4,33 @@ import com.meuspedidostest.domain.model.Spec;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SpecTest {
 
-  @Mock Spec spec;
+  @Test public void testSpec() {
 
-  @Test public void test() {
-    when(spec.getId()).thenReturn(55);
-    when(spec.getName()).thenReturn("Mobile");
-    when(spec.getRate()).thenReturn(5);
+    Spec spec = new Spec();
 
-    Assert.assertEquals(spec.getId(), 55);
+    Assert.assertNotNull(spec);
+    Assert.assertEquals(spec.getId(), 0);
+    Assert.assertNull(spec.getName());
+    Assert.assertEquals(spec.getRate(), 0);
+
+    spec.setId(1);
+    spec.setName("Mobile");
+    spec.setRate(8);
+
+    Assert.assertNotNull(spec);
+    Assert.assertNotEquals(spec.getId(), 0);
+    Assert.assertNotNull(spec.getName());
+    Assert.assertNotEquals(spec.getRate(), 0);
+
+    Assert.assertEquals(spec.getId(), 1);
     Assert.assertEquals(spec.getName(), "Mobile");
-    Assert.assertEquals(spec.getRate(), 5);
+    Assert.assertEquals(spec.getRate(), 8);
+
   }
 
 }

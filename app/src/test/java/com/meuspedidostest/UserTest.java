@@ -4,22 +4,29 @@ import com.meuspedidostest.domain.model.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserTest {
 
-  @Mock User user;
+  @Test public void testUser() {
 
-  @Test public void test() {
-    when(user.getName()).thenReturn("João");
-    when(user.getEmail()).thenReturn("joao@joao.com");
+    User user = new User();
 
-    Assert.assertEquals(user.getName(), "João");
-    Assert.assertEquals(user.getEmail(), "joao@joao.com");
+    Assert.assertNotNull(user);
+    Assert.assertNull(user.getName());
+    Assert.assertNull(user.getEmail());
+
+    user.setName("Pedro Paulo de Amorim");
+    user.setEmail("pp.amorim@hotmail.com");
+
+    Assert.assertNotNull(user);
+    Assert.assertNotNull(user.getName());
+    Assert.assertNotNull(user.getEmail());
+
+    Assert.assertEquals(user.getName(), "Pedro Paulo de Amorim");
+    Assert.assertEquals(user.getEmail(), "pp.amorim@hotmail.com");
+
   }
 
 }
