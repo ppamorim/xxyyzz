@@ -45,3 +45,7 @@
 ## Google
 -keep class com.google.**
 -dontwarn com.google.**
+
+#Mockito
+-keep class org.mockito.* { *; }
+-dontwarn org.mockito.**
