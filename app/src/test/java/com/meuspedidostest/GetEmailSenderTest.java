@@ -8,6 +8,7 @@ import com.meuspedidostest.executor.InteractorExecutor;
 import com.meuspedidostest.executor.MainThread;
 import com.meuspedidostest.executor.ThreadExecutor;
 import java.util.ArrayList;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,6 +38,22 @@ public class GetEmailSenderTest {
     mainThread = Mockito.spy(new MainThreadImplTest());
     interactorExecutor = Mockito.spy(new ThreadExecutor());
     getEmailSender = Mockito.spy(new GetEmailSenderImpl(interactorExecutor, mainThread));
+  }
+
+  @Test public void validatSpecValidator() {
+
+    Spec spec = new Spec();
+    spec.setId(1);
+    spec.setRate(10);
+    spec.setName("Luana");
+    Assert.assertTrue(getEmailSender.specIsValid(spec));
+
+    Spec specSecond = new Spec();
+    specSecond.setId(4);
+    specSecond.setRate(3);
+    specSecond.setName("Carlos");
+    Assert.assertFalse(getEmailSender.specIsValid(specSecond));
+
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -71,7 +88,6 @@ public class GetEmailSenderTest {
   @Test public void whenSetUserThenVerifyZeroInteractionsOnCallback() {
 
     Mockito.when(user.getName()).thenReturn("Pedro");
-    Mockito.when(user.getEmail()).thenReturn("pp.amorim@hotmail.com");
 
     Mockito.when(spec.getId()).thenReturn(2);
     Mockito.when(spec.getName()).thenReturn("João");

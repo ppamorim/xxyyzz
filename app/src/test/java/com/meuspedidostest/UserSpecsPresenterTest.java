@@ -25,8 +25,6 @@ public class UserSpecsPresenterTest {
 
   @Mock ArrayList<String> types;
 
-  @Mock ArrayList<SpecView> specViews;
-
   @Mock SpecView specView;
 
   @Mock Spec spec;
@@ -97,7 +95,12 @@ public class UserSpecsPresenterTest {
     Assert.assertEquals(specView.getRate(), 0);
     Assert.assertNotNull(specView.getSpec());
 
-    Mockito.when(specViews.get(0)).thenReturn(specView);
+    ArrayList<SpecView> specViews = new ArrayList<>();
+
+    Assert.assertNotNull(specViews);
+    Assert.assertTrue(specViews.isEmpty());
+
+    specViews.add(specView);
 
     userSpecsPresenter.setContentEmail("teste");
     userSpecsPresenter.setSubject("pp.amorim@hotmail.com");
