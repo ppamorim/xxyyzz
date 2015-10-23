@@ -13,12 +13,19 @@ import butterknife.ButterKnife;
  */
 public abstract class AbstractActivity extends AppCompatActivity {
 
+  /**
+   * Infla o layout da view e usa o ButterKnife para aplicar o binder.
+   * @param savedInstanceState Salvamento de instância
+   */
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(getContentViewId());
     ButterKnife.bind(this);
   }
 
+  /**
+   * Esconde o teclado caso esteja aberto.
+   */
   public void hideKeyboard() {
     View view = getCurrentFocus();
     if (view != null) {

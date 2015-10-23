@@ -4,6 +4,7 @@ import android.app.Application;
 import com.meuspedidostest.di.ApplicationModule;
 import com.meuspedidostest.di.components.ApplicationComponent;
 import com.meuspedidostest.di.components.DaggerApplicationComponent;
+import com.squareup.leakcanary.LeakCanary;
 
 /**
  * Classe que determina as configurações principais da aplicação.
@@ -18,6 +19,7 @@ public class MeusPedidosApplication extends Application {
   @Override public void onCreate() {
     super.onCreate();
     initializeDependencyInjector().inject(this);
+    LeakCanary.install(this);
   }
 
   /**

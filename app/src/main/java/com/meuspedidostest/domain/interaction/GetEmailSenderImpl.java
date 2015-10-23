@@ -85,7 +85,7 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
     String genericSubject = resources.getString(R.string.feedback_message);
 
     if(specIsValid(specs.get(0)) && specIsValid(specs.get(1)) && specIsValid(specs.get(2))) {
-      emails.add(new Email(resources.getString(R.string.mobile), genericSubject));
+      emails.add(new Email(resources.getString(R.string.front_end), genericSubject));
     }
 
     if(specIsValid(specs.get(3)) && specIsValid(specs.get(4))) {
