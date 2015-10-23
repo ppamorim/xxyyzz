@@ -19,6 +19,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class GetEmailSenderTest {
 
+  @Mock ArrayList<String> types;
+
   @Mock User user;
 
   @Mock Spec spec;
@@ -43,9 +45,31 @@ public class GetEmailSenderTest {
     getEmailSender.execute(null);
   }
 
-  @Test public void whenSetUserThenVerifyZeroInteractionsOnCallback() {
+  @Test public void givenNullUserWhenInitializeThenVerifyZeroInteractionsOnCallback() {
+    getEmailSender.setUser(null);
+    getEmailSender.execute(callback);
+    Mockito.verifyZeroInteractions(callback);
+  }
 
-    Assert.assertNotNull(user);
+  @Test public void givenNullSubjectWhenInitializeThenVerifyZeroInteractionsOnCallback() {
+    getEmailSender.setSubject(null);
+    getEmailSender.execute(callback);
+    Mockito.verifyZeroInteractions(callback);
+  }
+
+  @Test public void givenNullContentEmailWhenInitializeThenVerifyZeroInteractionsOnCallback() {
+    getEmailSender.setContentEmail(null);
+    getEmailSender.execute(callback);
+    Mockito.verifyZeroInteractions(callback);
+  }
+
+  @Test public void givenNullTypesWhenInitializeThenVerifyZeroInteractionsOnCallback() {
+    getEmailSender.setTypes(null);
+    getEmailSender.execute(callback);
+    Mockito.verifyZeroInteractions(callback);
+  }
+
+  @Test public void whenSetUserThenVerifyZeroInteractionsOnCallback() {
 
     Mockito.when(user.getName()).thenReturn("Pedro");
     Mockito.when(user.getEmail()).thenReturn("pp.amorim@hotmail.com");
@@ -56,9 +80,15 @@ public class GetEmailSenderTest {
 
     Mockito.when(specs.get(0)).thenReturn(spec);
 
+    Mockito.when(types.get(0)).thenReturn("Mobile");
+
     getEmailSender.setUser(user);
-    getEmailSender.setSpecView(specs);
+    getEmailSender.setSpecs(specs);
+    getEmailSender.setSubject("pp.amorim@hotmail.com");
+    getEmailSender.setContentEmail("teste");
+    getEmailSender.setTypes((String[]) types.toArray());
     getEmailSender.execute(callback);
+
     Mockito.verifyNoMoreInteractions(callback);
     Mockito.verify(callback).onEmailCreated();
     Mockito.verify(callback).onEmailError();

@@ -1,7 +1,5 @@
 package com.meuspedidostest.ui.presenter;
 
-import android.content.Context;
-import com.meuspedidostest.R;
 import com.meuspedidostest.domain.interaction.GetEmailSender;
 import com.meuspedidostest.domain.model.Spec;
 import com.meuspedidostest.domain.model.User;
@@ -64,7 +62,7 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
       getEmailSender.setTypes(types);
       getEmailSender.setSubject(subject);
       getEmailSender.setUser(user);
-      getEmailSender.setSpecView(specs);
+      getEmailSender.setSpecs(specs);
       getEmailSender.execute(new GetEmailSender.Callback() {
 
         @Override public void onEmailCreated() {

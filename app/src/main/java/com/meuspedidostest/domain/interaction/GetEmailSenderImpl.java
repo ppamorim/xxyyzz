@@ -50,7 +50,7 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
     this.mainThread = mainThread;
   }
 
-  @Override public void setSpecView(ArrayList<Spec> specs) {
+  @Override public void setSpecs(ArrayList<Spec> specs) {
     this.specs = specs;
   }
 

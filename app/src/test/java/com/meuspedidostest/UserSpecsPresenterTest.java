@@ -79,6 +79,7 @@ public class UserSpecsPresenterTest {
     userSpecsPresenter.setView(view);
     userSpecsPresenter.initialize();
 
+    Mockito.verifyNoMoreInteractions(callback);
     Mockito.verify(view).onSendEmailSuccess();
     Mockito.verify(view).onSendEmailFail();
 

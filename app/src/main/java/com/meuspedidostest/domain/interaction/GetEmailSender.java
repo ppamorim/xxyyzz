@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public interface GetEmailSender {
   void execute(Callback callback);
-  void setSpecView(ArrayList<Spec> specs);
+  void setSpecs(ArrayList<Spec> specs);
   void setUser(User user);
   void setSubject(String subject);
   void setTypes(String[] types);
