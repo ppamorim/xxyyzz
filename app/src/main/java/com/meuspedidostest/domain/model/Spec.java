@@ -10,6 +10,8 @@ public class Spec {
   private String name;
   private int rate;
 
+  public Spec() { }
+
   public Spec(String name) {
     this.name = name;
   }

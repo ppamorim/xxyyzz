@@ -1,5 +1,6 @@
 package com.meuspedidostest.ui.activity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import butterknife.Bind;
@@ -21,6 +22,8 @@ import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
  *
  */
 public class BaseActivity extends AbstractActivity {
+
+  private ProgressDialog progressDialog;
 
   @Bind(R.id.view_pager) NonSwipeableViewPager viewPager;
   @Bind(R.id.view_pager_tab) SmartTabLayout smartTabLayout;
@@ -97,6 +100,25 @@ public class BaseActivity extends AbstractActivity {
     if(page != null && page instanceof UserSpecsFragment) {
       ((UserSpecsFragment) page).notifyUser(user);
     }
+  }
+
+  /**
+   * Mostra o dialogo de carregamento
+   */
+  public void showLoading() {
+    progressDialog = new ProgressDialog(this);
+    progressDialog.setTitle(R.string.loading);
+    progressDialog.show();
+  }
+
+  /**
+   * Esconde o dialogo de carregamento
+   */
+  public void hideLoading() {
+    if(progressDialog != null) {
+      progressDialog.hide();
+    }
+    progressDialog = null;
   }
 
 }

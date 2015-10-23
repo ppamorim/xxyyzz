@@ -16,11 +16,16 @@
   <!-- CONTROLES -->
   <string name="next">Avançar</string>
   <string name="finish">Concluir</string>
+  <string name="loading">Carregando…</string>
 
   <!-- MENSAGENS DE ERRO -->
   <string name="empty_name_error">Digite o seu nome</string>
   <string name="empty_email_error">Digite o seu email</string>
   <string name="invalidate_email_error">Email inválido</string>
+
+  <!-- STATUS EMAIL -->
+  <string name="send_success">Email enviado</string>
+  <string name="send_error">Erro ao enviar email</string>
 
   <!-- FUNÇÃO DO PROGRAMADOR -->
   <string name="front_end">Front-End</string>

@@ -9,6 +9,7 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 import java.io.IOException;
 import java.net.Proxy;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Este é o serviço que envia os emails para o serviço MailGun,
@@ -38,6 +39,9 @@ public class SendEmailService {
       throws IOException {
 
     OkHttpClient client = new OkHttpClient();
+    client.setConnectTimeout(10, TimeUnit.SECONDS);
+    client.setWriteTimeout(10, TimeUnit.SECONDS);
+    client.setReadTimeout(30, TimeUnit.SECONDS);
     RequestBody body = new FormEncodingBuilder()
         .add("from", "MeusPedidos Teste "
             + "<postmaster@sandbox71a61135c62743fd8e04752be1ce9f20.mailgun.org>")

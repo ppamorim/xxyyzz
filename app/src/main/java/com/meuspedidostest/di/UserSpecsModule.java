@@ -9,7 +9,7 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Modulo que cria a referência do UserDataPresenter
+ * Modulo que cria a referência do UserDataPresenterTest
  * e o interador GetEmailSender.
  */
 @Module public class UserSpecsModule {

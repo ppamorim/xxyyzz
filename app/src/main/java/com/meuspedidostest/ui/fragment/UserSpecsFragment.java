@@ -1,8 +1,11 @@
 package com.meuspedidostest.ui.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.Bind;
@@ -13,6 +16,7 @@ import com.meuspedidostest.di.UserSpecsModule;
 import com.meuspedidostest.di.components.DaggerUserSpecsComponent;
 import com.meuspedidostest.di.components.UserSpecsComponent;
 import com.meuspedidostest.domain.model.User;
+import com.meuspedidostest.ui.activity.BaseActivity;
 import com.meuspedidostest.ui.presenter.UserSpecsPresenter;
 import com.meuspedidostest.ui.view.SpecView;
 import java.util.ArrayList;
@@ -32,10 +36,15 @@ public class UserSpecsFragment extends AbstractFragment implements UserSpecsPres
 
   @Bind(R.id.user_grettings) TextView userGrettings;
   @Bind(R.id.container_specs) LinearLayout containerSpecs;
+  @Bind(R.id.finish) Button finish;
 
   //Click listener para quando o usuário clica no botão de finalizar.
   @OnClick(R.id.finish) void onFinishClick() {
-    userSpecsPresenter.initialize();
+    if(finish.isEnabled()) {
+      finish.setEnabled(false);
+      ((BaseActivity) getActivity()).showLoading();
+      userSpecsPresenter.initialize();
+    }
   }
 
   @Override protected int getContentViewId() {
@@ -87,14 +96,28 @@ public class UserSpecsFragment extends AbstractFragment implements UserSpecsPres
    * Informa para o usuário que o email foi enviado com sucesso.
    */
   @Override public void onSendEmailSuccess() {
-
+    resetFinishButton();
+    showSnackBar(R.string.send_success);
+    getActivity().onBackPressed();
   }
 
   /**
    * Informa para o usuário que o envio do email falhou.
    */
   @Override public void onSendEmailFail() {
+    resetFinishButton();
+    showSnackBar(R.string.send_error);
+  }
 
+  /**
+   * Método utilizado para mostrar o SnackBar.
+   * @param message id da mensagem.
+   */
+  private void showSnackBar(int message) {
+    View view = getView();
+    if(view != null) {
+      Snackbar.make(getView(), message, Snackbar.LENGTH_LONG).show();
+    }
   }
 
   /**
@@ -117,6 +140,15 @@ public class UserSpecsFragment extends AbstractFragment implements UserSpecsPres
     userSpecsPresenter.setUser(user);
     userGrettings.setText(
         String.format(getResources().getString(R.string.user_specs_message), user.getName()));
+  }
+
+  /**
+   * Reseta o botão para permitir que seja
+   * clicado novamente.
+   */
+  private void resetFinishButton() {
+    ((BaseActivity) getActivity()).hideLoading();
+    finish.setEnabled(true);
   }
 
   /**

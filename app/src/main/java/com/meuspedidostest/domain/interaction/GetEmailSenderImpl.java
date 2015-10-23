@@ -103,7 +103,6 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
     try {
 
       for(Email email : emails) {
-        System.out.println("EMAIL: " + email.getType());
         SendEmailService.sendEmail(user.getName(), user.getEmail(), email.getSubject(),
             String.format(resources.getString(R.string.generic_email), email.getType()));
       }
@@ -148,7 +147,7 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
    * e menor ou igual a 10, returna true,
    * caso contrário, retorna false.
    */
-  private boolean specIsValid(Spec spec) {
+  @Override public boolean specIsValid(Spec spec) {
     int rate = spec.getRate();
     return rate >= 7 && rate <= 10;
   }

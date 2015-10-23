@@ -7,7 +7,7 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Modulo que cria a referência do UserDataPresenter.
+ * Modulo que cria a referência do UserDataPresenterTest.
  */
 @Module public class UserDataModule {
   @Provides @ActivityScope UserDataPresenter provideUserDataPresenter(

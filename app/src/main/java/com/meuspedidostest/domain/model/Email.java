@@ -8,6 +8,8 @@ public class Email {
   private String type;
   private String subject;
 
+  public Email() { }
+
   public Email(String type, String subject) {
     this.type = type;
     this.subject = subject;
