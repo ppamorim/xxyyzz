@@ -42,7 +42,7 @@ public class SpecView {
   }
 
   public void setRate(int rate) {
-    if(discreteSeekBar != null) {
+    if (discreteSeekBar != null) {
       discreteSeekBar.setProgress(rate);
     }
   }
