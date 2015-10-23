@@ -30,7 +30,7 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
   private ArrayList<Spec> specs;
   private User user;
   private Callback callback;
-  private String[] types;
+  private ArrayList<String> types;
   private String subject;
   private String contentEmail;
 
@@ -58,7 +58,7 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
     this.subject = subject;
   }
 
-  @Override public void setTypes(String[] types) {
+  @Override public void setTypes(ArrayList<String> types) {
     this.types = types;
   }
 
@@ -78,20 +78,24 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
    */
   @Override public void run() {
 
-    if(types != null && subject != null && contentEmail != null) {
+    if(types != null
+        && subject != null
+        && contentEmail != null
+        && user != null
+        && specs != null) {
 
       ArrayList<Email> emails = new ArrayList<>();
 
       if (specIsValid(specs.get(0)) && specIsValid(specs.get(1)) && specIsValid(specs.get(2))) {
-        emails.add(new Email(types[0], subject));
+        emails.add(new Email(types.get(0), subject));
       }
 
       if (specIsValid(specs.get(3)) && specIsValid(specs.get(4))) {
-        emails.add(new Email(types[1], subject));
+        emails.add(new Email(types.get(1), subject));
       }
 
       if (specIsValid(specs.get(5)) && specIsValid(specs.get(6))) {
-        emails.add(new Email(types[2], subject));
+        emails.add(new Email(types.get(2), subject));
       }
 
       if (emails.size() == 0) {

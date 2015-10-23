@@ -16,11 +16,13 @@ import com.meuspedidostest.R;
 import com.meuspedidostest.di.UserSpecsModule;
 import com.meuspedidostest.di.components.DaggerUserSpecsComponent;
 import com.meuspedidostest.di.components.UserSpecsComponent;
+import com.meuspedidostest.domain.model.Spec;
 import com.meuspedidostest.domain.model.User;
 import com.meuspedidostest.ui.activity.BaseActivity;
 import com.meuspedidostest.ui.presenter.UserSpecsPresenter;
 import com.meuspedidostest.ui.view.SpecView;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.inject.Inject;
 
 /**
@@ -70,10 +72,11 @@ public class UserSpecsFragment extends AbstractFragment implements UserSpecsPres
   @Override public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
     Resources resources = getResources();
-    userSpecsPresenter.setSpecs(resources.getStringArray(R.array.specs));
+    userSpecsPresenter.setTypes(
+        new ArrayList<>(Arrays.asList(resources.getStringArray(R.array.functions))));
     userSpecsPresenter.setSubject(resources.getString(R.string.feedback_message));
     userSpecsPresenter.setContentEmail(resources.getString(R.string.generic_email));
-    userSpecsPresenter.setTypes(resources.getStringArray(R.array.functions));
+    createSpecs();
   }
 
   @Override public void onResume() {
@@ -155,6 +158,20 @@ public class UserSpecsFragment extends AbstractFragment implements UserSpecsPres
   private void resetFinishButton() {
     ((BaseActivity) getActivity()).hideLoading();
     finish.setEnabled(true);
+  }
+
+  /**
+   * Gera as views de conhecimento do usuário.
+   */
+  private void createSpecs() {
+    ArrayList<SpecView> specViews = new ArrayList<>();
+    String[] specs = getResources().getStringArray(R.array.specs);
+    for (String item : specs) {
+      SpecView specView = new SpecView(new Spec(item));
+      specViews.add(specView);
+      containerSpecs.addView(specView.createView(LayoutInflater.from(getContext())));
+    }
+    userSpecsPresenter.setSpecs(specViews);
   }
 
   /**

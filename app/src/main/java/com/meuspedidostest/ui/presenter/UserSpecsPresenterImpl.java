@@ -20,7 +20,7 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
   private User user;
   private GetEmailSender getEmailSender;
   private ArrayList<SpecView> specViews;
-  private String[] types;
+  private ArrayList<String> types;
   private String subject;
   private String contentEmail;
 
@@ -49,7 +49,11 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
    * informando os dados do usuário e os seus conhecimentos.
    */
   @Override public void initialize() {
-    if(user != null && specViews != null) {
+    if(user != null
+        && specViews != null
+        && contentEmail != null
+        && types != null
+        && subject != null) {
       ArrayList<Spec> specs = new ArrayList<>();
 
       for (SpecView specView : specViews) {
@@ -104,18 +108,6 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
   }
 
   /**
-   * Gera as views de conhecimento do usuário.
-   * @param specs Specs da aplicação.
-   */
-  @Override public void setSpecs(String[] specs) {
-    specViews = new ArrayList<>(specs.length);
-    for (String item : specs) {
-      specViews.add(new SpecView(new Spec(item)));
-    }
-    onSpecsLoadSuccess(specViews);
-  }
-
-  /**
    * Declara o titulo do email.
    * @param subject titulo do email.
    */
@@ -127,7 +119,7 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
    * Declara os tipos de email para o interactor.
    * @param types tipos de email.
    */
-  @Override public void setTypes(String[] types) {
+  @Override public void setTypes(ArrayList<String> types) {
     this.types = types;
   }
 
@@ -139,15 +131,8 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
     this.contentEmail = contentEmail;
   }
 
-  /**
-   * Informa o sucesso na criação dos conhecimentos
-   * do usuário
-   * @param specViews Lista de conhecimentos
-   */
-  private void onSpecsLoadSuccess(ArrayList<SpecView> specViews) {
-    if (view.isReady()) {
-      view.onSpecsLoaded(specViews);
-    }
+  @Override public void setSpecs(ArrayList<SpecView> specViews) {
+    this.specViews = specViews;
   }
 
   /**

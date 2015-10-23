@@ -15,7 +15,7 @@ public interface GetEmailSender {
   void setSpecs(ArrayList<Spec> specs);
   void setUser(User user);
   void setSubject(String subject);
-  void setTypes(String[] types);
+  void setTypes(ArrayList<String> types);
   void setContentEmail(String contentEmail);
   boolean specIsValid(Spec spec);
   interface Callback {

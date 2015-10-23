@@ -17,9 +17,9 @@ import java.util.ArrayList;
 public interface UserSpecsPresenter extends Presenter {
   void setView(View view);
   void setUser(User user);
-  void setSpecs(String[] specs);
+  void setSpecs(ArrayList<SpecView> specViews);
   void setSubject(String subject);
-  void setTypes(String[] types);
+  void setTypes(ArrayList<String> types);
   void setContentEmail(String contentEmail);
   void lowMemory();
   User getUser();
