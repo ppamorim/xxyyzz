@@ -18,7 +18,10 @@ import java.util.ArrayList;
 public interface UserSpecsPresenter extends Presenter {
   void setView(View view);
   void setUser(User user);
-  void loadSpecs(Context context);
+  void setSpecs(String[] specs);
+  void setSubject(String subject);
+  void setTypes(String[] types);
+  void setContentEmail(String contentEmail);
   void lowMemory();
   User getUser();
   interface View {

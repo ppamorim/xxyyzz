@@ -44,7 +44,7 @@ public class SendEmailService {
     client.setReadTimeout(30, TimeUnit.SECONDS);
     RequestBody body = new FormEncodingBuilder()
         .add("from", "MeusPedidos Teste "
-            + "<postmaster@sandbox71a61135c62743fd8e04752be1ce9f20.mailgun.org>")
+            + "<contato@meuspedidos.com>")
         .add("to", name + " <" + to + ">")
         .add("subject", subject)
         .add("text", text)

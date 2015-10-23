@@ -34,7 +34,9 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
   private ArrayList<Spec> specs;
   private User user;
   private Callback callback;
-  private Context context;
+  private String[] types;
+  private String subject;
+  private String contentEmail;
 
   /**
    * Declara as intâncias nas variáveis utilizando
@@ -56,8 +58,16 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
     this.user = user;
   }
 
-  @Override public void setContext(Context context) {
-    this.context = context;
+  @Override public void setSubject(String subject) {
+    this.subject = subject;
+  }
+
+  @Override public void setTypes(String[] types) {
+    this.types = types;
+  }
+
+  @Override public void setContentEmail(String contentEmail) {
+    this.contentEmail = contentEmail;
   }
 
   @Override public void execute(Callback callback) {
@@ -72,48 +82,45 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
    */
   @Override public void run() {
 
-    ArrayList<Email> emails = new ArrayList<>();
+    if(types != null && subject != null && contentEmail != null) {
 
-    Resources resources = context.getResources();
-    String genericSubject = resources.getString(R.string.feedback_message);
+      ArrayList<Email> emails = new ArrayList<>();
 
-    if (specIsValid(specs.get(0)) && specIsValid(specs.get(1)) && specIsValid(specs.get(2))) {
-      emails.add(new Email(resources.getString(R.string.front_end), genericSubject));
-    }
-
-    if (specIsValid(specs.get(3)) && specIsValid(specs.get(4))) {
-      emails.add(new Email(resources.getString(R.string.back_end), genericSubject));
-    }
-
-    if (specIsValid(specs.get(5)) && specIsValid(specs.get(6))) {
-      emails.add(new Email(resources.getString(R.string.mobile), genericSubject));
-    }
-
-    if (emails.size() == 0) {
-      emails.add(new Email("", genericSubject));
-    }
-
-    try {
-
-      boolean success = false;
-
-      for (Email email : emails) {
-        success = SendEmailService.sendEmail(
-            user.getName(), user.getEmail(), email.getSubject(),
-            String.format(resources.getString(R.string.generic_email),
-                email.getType()));
+      if (specIsValid(specs.get(0)) && specIsValid(specs.get(1)) && specIsValid(specs.get(2))) {
+        emails.add(new Email(types[0], subject));
       }
-      emails.clear();
 
-      if(success) {
-        notifyEmailCreated();
-      } else {
+      if (specIsValid(specs.get(3)) && specIsValid(specs.get(4))) {
+        emails.add(new Email(types[1], subject));
+      }
+
+      if (specIsValid(specs.get(5)) && specIsValid(specs.get(6))) {
+        emails.add(new Email(types[2], subject));
+      }
+
+      if (emails.size() == 0) {
+        emails.add(new Email("", subject));
+      }
+
+      try {
+
+        boolean success = false;
+
+        for (Email email : emails) {
+          success = SendEmailService.sendEmail(user.getName(), user.getEmail(), email.getSubject(),
+              String.format(contentEmail, email.getType()));
+        }
+        emails.clear();
+
+        if (success) {
+          notifyEmailCreated();
+        } else {
+          notifyEmailError();
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
         notifyEmailError();
       }
-
-    } catch (Exception e) {
-      e.printStackTrace();
-      notifyEmailError();
     }
 
   }

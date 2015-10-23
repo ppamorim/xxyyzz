@@ -5,6 +5,7 @@
 # Configurações
 
   É necessário instalar as ultimas versões das SDKs do Android (23.0.1) e o app suporta no mínimo a versão 10 da SDK do Android. É recomendável abrir o projeto no Android Studio de ultima versão.
+  Não se esqueça de ir em Build Variants e configurar o Test Artifact para Unit Tests
 
 # Estrutura
 

@@ -28,9 +28,11 @@
   <string name="send_error">Erro ao enviar email</string>
 
   <!-- FUNÇÃO DO PROGRAMADOR -->
-  <string name="front_end">Front-End</string>
-  <string name="back_end">Back-End</string>
-  <string name="mobile">Mobile</string>
+  <string-array name="functions">
+    <item>Front-End</item>
+    <item>Back-End</item>
+    <item>Mobile</item>
+  </string-array>
 
   <!-- LISTA DE CONHECIMENTOS DO USUÁRIO-->
   <string-array name="specs">

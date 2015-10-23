@@ -1,6 +1,8 @@
 package com.meuspedidostest.ui.fragment;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
 import android.widget.EditText;
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -49,6 +51,14 @@ public class UserDataFragment extends AbstractFragment implements UserDataPresen
     userDataPresenter.setView(this);
   }
 
+  /**
+   * Configura o botão de send do teclado do Android
+   */
+  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    configEnterClick();
+  }
+
   @Override public void onResume() {
     super.onResume();
     userDataPresenter.resume();
@@ -86,7 +96,7 @@ public class UserDataFragment extends AbstractFragment implements UserDataPresen
    * Cria a instância do componente e modulos, utilizado para
    * injetar as instancias do presenter.
    *
-   * @return nova instancia do componente se necessário
+   * @return nova instancia do componente se necessário.
    */
   public UserDataComponent userDataComponent() {
     if (userDataComponent == null) {
@@ -96,6 +106,23 @@ public class UserDataFragment extends AbstractFragment implements UserDataPresen
           .build();
     }
     return userDataComponent;
+  }
+
+  /**\
+   * Configura o click no botão de enviar do
+   * teclado do Android.
+   */
+  private void configEnterClick() {
+    email.setOnKeyListener(new View.OnKeyListener(){
+      @Override public boolean onKey(View v, int keyCode, KeyEvent event) {
+        switch (keyCode) {
+          case KeyEvent.KEYCODE_ENTER:
+            onNextClick();
+            break;
+        }
+        return false;
+      }
+    });
   }
 
 }

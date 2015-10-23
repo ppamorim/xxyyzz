@@ -1,5 +1,6 @@
 package com.meuspedidostest.ui.fragment;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
@@ -62,12 +63,17 @@ public class UserSpecsFragment extends AbstractFragment implements UserSpecsPres
   }
 
   /**
-   * Carrega os conhecimentos disponíveis na aplicação.
+   * Carrega os conhecimentos disponíveis na aplicação e as mensagens
+   * para o email.
    * @param savedInstanceState Instancia do estado salvo do Fragment
    */
   @Override public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-    userSpecsPresenter.loadSpecs(getContext());
+    Resources resources = getResources();
+    userSpecsPresenter.setSpecs(resources.getStringArray(R.array.specs));
+    userSpecsPresenter.setSubject(resources.getString(R.string.feedback_message));
+    userSpecsPresenter.setContentEmail(resources.getString(R.string.generic_email));
+    userSpecsPresenter.setTypes(resources.getStringArray(R.array.functions));
   }
 
   @Override public void onResume() {

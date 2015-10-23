@@ -18,11 +18,13 @@ import javax.inject.Inject;
  */
 public class UserSpecsPresenterImpl implements UserSpecsPresenter {
 
-  private Context context;
   private View view;
   private User user;
   private GetEmailSender getEmailSender;
   private ArrayList<SpecView> specViews;
+  private String[] types;
+  private String subject;
+  private String contentEmail;
 
   /**
    * Injeta a instancia do interactor de envio de email.
@@ -49,7 +51,7 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
    * informando os dados do usuário e os seus conhecimentos.
    */
   @Override public void initialize() {
-    if(user != null) {
+    if(user != null && specViews != null) {
       ArrayList<Spec> specs = new ArrayList<>();
 
       for (SpecView specView : specViews) {
@@ -58,7 +60,9 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
         specs.add(spec);
       }
 
-      getEmailSender.setContext(context);
+      getEmailSender.setContentEmail(contentEmail);
+      getEmailSender.setTypes(types);
+      getEmailSender.setSubject(subject);
       getEmailSender.setUser(user);
       getEmailSender.setSpecView(specs);
       getEmailSender.execute(new GetEmailSender.Callback() {
@@ -103,17 +107,38 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
 
   /**
    * Gera as views de conhecimento do usuário.
-   * @param context Contexto da aplicação
+   * @param specs Specs da aplicação.
    */
-  @Override public void loadSpecs(Context context) {
-    this.context = context;
-    cleanListIfNeeded();
-    String[] items = context.getResources().getStringArray(R.array.specs);
-    specViews = new ArrayList<>(items.length);
-    for (String item : items) {
+  @Override public void setSpecs(String[] specs) {
+    specViews = new ArrayList<>(specs.length);
+    for (String item : specs) {
       specViews.add(new SpecView(new Spec(item)));
     }
     onSpecsLoadSuccess(specViews);
+  }
+
+  /**
+   * Declara o titulo do email.
+   * @param subject titulo do email.
+   */
+  @Override public void setSubject(String subject) {
+    this.subject = subject;
+  }
+
+  /**
+   * Declara os tipos de email para o interactor.
+   * @param types tipos de email.
+   */
+  @Override public void setTypes(String[] types) {
+    this.types = types;
+  }
+
+  /**
+   * Declara o conteúdo do email para o interactor.
+   * @param contentEmail Conteúdo do email.
+   */
+  @Override public void setContentEmail(String contentEmail) {
+    this.contentEmail = contentEmail;
   }
 
   /**
