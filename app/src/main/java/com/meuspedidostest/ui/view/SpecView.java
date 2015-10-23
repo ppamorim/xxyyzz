@@ -10,6 +10,11 @@ import com.meuspedidostest.domain.model.Spec;
 import java.util.ArrayList;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
+/**
+ * Representa a classe que infla o layout das
+ * views para ser adicionada no Fragment de
+ * conhecimentos do usuário.
+ */
 public class SpecView {
 
   private Spec spec;
@@ -21,6 +26,13 @@ public class SpecView {
     this.spec = spec;
   }
 
+  /**
+   * Cria a view e utiliza o ButterKnife para dar
+   * bind nas views internas.
+   * Seta o nome do usuário.
+   * @param layoutInflater Instância do LayoutInflater
+   * @return View inflada
+   */
   public View createView(LayoutInflater layoutInflater) {
     View view = layoutInflater.inflate(R.layout.adapter_language, null, false);
     ButterKnife.bind(this, view);

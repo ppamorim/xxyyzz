@@ -15,17 +15,21 @@ import com.meuspedidostest.ui.presenter.UserDataPresenter;
 import javax.inject.Inject;
 
 /**
- * Esta classe representa a configureção de nome e email do usuário.
+ * Esta classe representa a configuração de nome
+ * e email do usuário.
  */
 public class UserDataFragment extends AbstractFragment implements UserDataPresenter.View {
 
+  //Componente utilizado para injetar os modulos.
   private UserDataComponent userDataComponent;
 
+  //Injeta a referência do presenter.
   @Inject UserDataPresenter userDataPresenter;
 
   @Bind(R.id.name) EditText name;
   @Bind(R.id.email) EditText email;
 
+  //Click listener para quando o usuário clica no botão de próximo.
   @OnClick(R.id.next) void onNextClick() {
     userDataPresenter.setUserData(name.getText().toString(), email.getText().toString());
     userDataPresenter.initialize();
@@ -36,7 +40,8 @@ public class UserDataFragment extends AbstractFragment implements UserDataPresen
   }
 
   /**
-   * Injeta o componente na view e declara o callback da presenter
+   * Injeta o componente no Fragment e declara o callback da presenter
+   * @param savedInstanceState Instancia do estado salvo do Fragment
    */
   @Override public void onCreate(Bundle savedInstanceState) {
     userDataComponent().inject(this);
@@ -54,6 +59,9 @@ public class UserDataFragment extends AbstractFragment implements UserDataPresen
     userDataPresenter.pause();
   }
 
+  /**
+   * @return Fragment está visivel e válido
+   */
   @Override public boolean isReady() {
     return isAdded();
   }

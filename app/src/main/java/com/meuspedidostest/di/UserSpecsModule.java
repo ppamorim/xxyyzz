@@ -8,6 +8,10 @@ import com.meuspedidostest.ui.presenter.UserSpecsPresenterImpl;
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ * Modulo que cria a referência do UserDataPresenter
+ * e o interador GetEmailSender.
+ */
 @Module public class UserSpecsModule {
 
   @Provides @ActivityScope UserSpecsPresenter provideUserSpecsPresenter(

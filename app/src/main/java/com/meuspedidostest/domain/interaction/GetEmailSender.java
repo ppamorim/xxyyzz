@@ -7,8 +7,7 @@ import com.meuspedidostest.ui.view.SpecView;
 import java.util.ArrayList;
 
 /**
- * Esta interface trabalha como uma contract para a thread
- * assincrona de envio de email.
+ * Esta interface realiza a conexão entre o presenter e o domain(interactor).
  * A interface declara a instancias de views, o usuário
  * e o contexto da aplicação.
  * A interface Callback retorna o sucesso ou erro do envio dos emails.

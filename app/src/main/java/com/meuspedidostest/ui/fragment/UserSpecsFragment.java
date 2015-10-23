@@ -18,15 +18,22 @@ import com.meuspedidostest.ui.view.SpecView;
 import java.util.ArrayList;
 import javax.inject.Inject;
 
+/**
+ * Esta classe representa a avaliação dos
+ * conhecimentos do usuário.
+ */
 public class UserSpecsFragment extends AbstractFragment implements UserSpecsPresenter.View {
 
+  //Componente utilizado para injetar os modulos.
   private UserSpecsComponent userSpecsComponent;
 
+  //Injeta a referência do presenter.
   @Inject UserSpecsPresenter userSpecsPresenter;
 
   @Bind(R.id.user_grettings) TextView userGrettings;
   @Bind(R.id.container_specs) LinearLayout containerSpecs;
 
+  //Click listener para quando o usuário clica no botão de finalizar.
   @OnClick(R.id.finish) void onFinishClick() {
     userSpecsPresenter.initialize();
   }
@@ -35,13 +42,20 @@ public class UserSpecsFragment extends AbstractFragment implements UserSpecsPres
     return R.layout.fragment_user_specs;
   }
 
+  /**
+   * Injeta o componente no Fragment e declara o callback e o context para o presenter.
+   * @param savedInstanceState Instancia do estado salvo do Fragment.
+   */
   @Override public void onCreate(Bundle savedInstanceState) {
     userSpecsComponent().inject(this);
     super.onCreate(savedInstanceState);
     userSpecsPresenter.setView(this);
-    userSpecsPresenter.setContext(getContext());
   }
 
+  /**
+   * Carrega os conhecimentos disponíveis na aplicação.
+   * @param savedInstanceState Instancia do estado salvo do Fragment
+   */
   @Override public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
     userSpecsPresenter.loadSpecs(getContext());
@@ -57,18 +71,36 @@ public class UserSpecsFragment extends AbstractFragment implements UserSpecsPres
     super.onPause();
   }
 
+  @Override public void onLowMemory() {
+    userSpecsPresenter.lowMemory();
+    super.onLowMemory();
+  }
+
+  /**
+   * @return Fragment está visivel e válido
+   */
   @Override public boolean isReady() {
     return isAdded();
   }
 
+  /**
+   * Informa para o usuário que o email foi enviado com sucesso.
+   */
   @Override public void onSendEmailSuccess() {
 
   }
 
+  /**
+   * Informa para o usuário que o envio do email falhou.
+   */
   @Override public void onSendEmailFail() {
 
   }
 
+  /**
+   * Monta a view de conhecimentos do usuário.
+   * @param specViews Lista de View de conhecimentos.
+   */
   @Override public void onSpecsLoaded(ArrayList<SpecView> specViews) {
     containerSpecs.removeAllViews();
     for(SpecView specView : specViews) {
@@ -76,6 +108,11 @@ public class UserSpecsFragment extends AbstractFragment implements UserSpecsPres
     }
   }
 
+  /**
+   * Notifica o usuário para o presenter e configura
+   * o nome do usuário para o texto.
+   * @param user Instancia do usuário.
+   */
   public void notifyUser(User user) {
     userSpecsPresenter.setUser(user);
     userGrettings.setText(

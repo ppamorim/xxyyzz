@@ -5,6 +5,10 @@ import com.meuspedidostest.di.scopes.ActivityScope;
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ * Modulo que cria e permite injetar o contexto
+ * da activity.
+ */
 @Module public class ActivityModule {
 
   private final Activity activityContext;

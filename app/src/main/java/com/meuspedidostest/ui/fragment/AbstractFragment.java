@@ -20,6 +20,9 @@ public abstract class AbstractFragment extends Fragment {
     return view;
   }
 
+  /**
+   * @return Referência do layout do Fragment nos resources.
+   */
   protected abstract int getContentViewId();
 
 }

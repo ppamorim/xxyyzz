@@ -9,7 +9,7 @@ import butterknife.ButterKnife;
 
 /**
  * Esta classe abstrata infla o layout e aplica o binder do ButterKnife,
- * assim ajudando na criação das activities da aplicação.
+ * assim ajudando na criação das Activities da aplicação.
  */
 public abstract class AbstractActivity extends AppCompatActivity {
 
@@ -27,6 +27,9 @@ public abstract class AbstractActivity extends AppCompatActivity {
     }
   }
 
+  /**
+   * @return Referência do layout da Activity nos resources.
+   */
   protected abstract int getContentViewId();
 
 }

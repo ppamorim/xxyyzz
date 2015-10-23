@@ -10,6 +10,10 @@ import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
 
+/**
+ * Modulo que cria a referência dos executores dos
+ * interadores e a instância da mainThread.
+ */
 @Module public class ApplicationModule {
 
   private final Application application;

@@ -6,6 +6,10 @@ import com.meuspedidostest.ui.fragment.UserDataFragment;
 import com.meuspedidostest.ui.presenter.UserDataPresenter;
 import dagger.Component;
 
+/**
+ * Componente que permite injetar na View UserDataFragment,
+ * a referência dos presenters utilizando o seu módulo.
+ */
 @ActivityScope @Component(dependencies = ApplicationComponent.class,
     modules = { UserDataModule.class })
 public interface UserDataComponent {
