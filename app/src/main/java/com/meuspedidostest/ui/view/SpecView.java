@@ -7,7 +7,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.meuspedidostest.R;
 import com.meuspedidostest.domain.model.Spec;
-import java.util.ArrayList;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 /**

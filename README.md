@@ -1,6 +1,6 @@
 ![Logo 1][1]
 
-[![Build Status](https://api.travis-ci.org/ppamorim/xxyyzz?branch=master)](https://travis-ci.org/ppamorim/xxyyzz)
+[![Build Status](https://api.travis-ci.org/ppamorim/xxyyzz.svg?branch=master)](https://travis-ci.org/ppamorim/xxyyzz)
 
 # Configurações
 

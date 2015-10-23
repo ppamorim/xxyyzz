@@ -40,7 +40,7 @@ public class UserSpecsFragment extends AbstractFragment implements UserSpecsPres
 
   //Click listener para quando o usuário clica no botão de finalizar.
   @OnClick(R.id.finish) void onFinishClick() {
-    if(finish.isEnabled()) {
+    if (finish.isEnabled()) {
       finish.setEnabled(false);
       ((BaseActivity) getActivity()).showLoading();
       userSpecsPresenter.initialize();
@@ -115,7 +115,7 @@ public class UserSpecsFragment extends AbstractFragment implements UserSpecsPres
    */
   private void showSnackBar(int message) {
     View view = getView();
-    if(view != null) {
+    if (view != null) {
       Snackbar.make(getView(), message, Snackbar.LENGTH_LONG).show();
     }
   }
@@ -126,7 +126,7 @@ public class UserSpecsFragment extends AbstractFragment implements UserSpecsPres
    */
   @Override public void onSpecsLoaded(ArrayList<SpecView> specViews) {
     containerSpecs.removeAllViews();
-    for(SpecView specView : specViews) {
+    for (SpecView specView : specViews) {
       containerSpecs.addView(specView.createView(LayoutInflater.from(getContext())));
     }
   }

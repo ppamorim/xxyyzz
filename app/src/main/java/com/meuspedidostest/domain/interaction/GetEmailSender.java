@@ -1,7 +1,6 @@
 package com.meuspedidostest.domain.interaction;
 
 import android.content.Context;
-import com.meuspedidostest.domain.model.Email;
 import com.meuspedidostest.domain.model.Spec;
 import com.meuspedidostest.domain.model.User;
 import com.meuspedidostest.ui.view.SpecView;

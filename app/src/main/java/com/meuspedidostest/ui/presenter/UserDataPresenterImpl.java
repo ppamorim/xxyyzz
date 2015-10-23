@@ -34,7 +34,7 @@ public class UserDataPresenterImpl implements UserDataPresenter {
    * sucesso da configuração.
    */
   @Override public void initialize() {
-    if(this.user != null) {
+    if (this.user != null) {
       boolean validName = validateName(this.user.getName());
       boolean validEmail = validateEmail(this.user.getEmail());
       if (!validName) {
@@ -43,7 +43,7 @@ public class UserDataPresenterImpl implements UserDataPresenter {
       if (!validEmail) {
         notifyInvalidEmail();
       }
-      if(validName && validEmail) {
+      if (validName && validEmail) {
         notifyUserSuccess(this.user);
       }
     }
@@ -72,7 +72,7 @@ public class UserDataPresenterImpl implements UserDataPresenter {
    * Notifica sucesso na configuração do usuário.
    */
   private void notifyUserSuccess(User user) {
-    if(view.isReady()) {
+    if (view.isReady()) {
       view.onUserSuccess(user);
     }
   }
@@ -81,7 +81,7 @@ public class UserDataPresenterImpl implements UserDataPresenter {
    * Notifica para a View que o nome é inválido.
    */
   private void notifyInvalidName() {
-    if(view.isReady()) {
+    if (view.isReady()) {
       view.onEmptyName();
     }
   }
@@ -90,7 +90,7 @@ public class UserDataPresenterImpl implements UserDataPresenter {
    * Notifica para a View que o email é inválido.
    */
   private void notifyInvalidEmail() {
-    if(view.isReady()) {
+    if (view.isReady()) {
       view.onInvalidEmail();
     }
   }

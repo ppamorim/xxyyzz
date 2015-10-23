@@ -99,7 +99,7 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
     cleanListIfNeeded();
     String[] items = context.getResources().getStringArray(R.array.specs);
     specViews = new ArrayList<>(items.length);
-    for(String item : items) {
+    for (String item : items) {
       specViews.add(new SpecView(new Spec(item)));
     }
     onSpecsLoadSuccess(specViews);
@@ -111,7 +111,7 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
    * @param specViews Lista de conhecimentos
    */
   private void onSpecsLoadSuccess(ArrayList<SpecView> specViews) {
-    if(view.isReady()) {
+    if (view.isReady()) {
       view.onSpecsLoaded(specViews);
     }
   }
@@ -120,7 +120,7 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
    * Notifica para o Fragment o sucesso do envio do email.
    */
   private void notifySendEmailSuccess() {
-    if(view.isReady()) {
+    if (view.isReady()) {
       view.onSendEmailSuccess();
     }
   }
@@ -129,7 +129,7 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
    * Notifica ara o Fragment a falha de envio do email.
    */
   private void notifySendEmailFail() {
-    if(view.isReady()) {
+    if (view.isReady()) {
       view.onSendEmailFail();
     }
   }
@@ -138,7 +138,7 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
    * Limpa a lista de conhecimentos para liberar memória.
    */
   private void cleanListIfNeeded() {
-    if(specViews != null) {
+    if (specViews != null) {
       specViews.clear();
     }
   }

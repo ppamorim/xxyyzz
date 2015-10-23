@@ -75,7 +75,7 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
     ArrayList<Email> emails = new ArrayList<>();
     ArrayList<Spec> specs = new ArrayList<>(specViews.size());
 
-    for(SpecView specView : specViews) {
+    for (SpecView specView : specViews) {
       Spec spec = specView.getSpec();
       spec.setRate(specView.getRate());
       specs.add(spec);
@@ -84,25 +84,25 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
     Resources resources = context.getResources();
     String genericSubject = resources.getString(R.string.feedback_message);
 
-    if(specIsValid(specs.get(0)) && specIsValid(specs.get(1)) && specIsValid(specs.get(2))) {
+    if (specIsValid(specs.get(0)) && specIsValid(specs.get(1)) && specIsValid(specs.get(2))) {
       emails.add(new Email(resources.getString(R.string.front_end), genericSubject));
     }
 
-    if(specIsValid(specs.get(3)) && specIsValid(specs.get(4))) {
+    if (specIsValid(specs.get(3)) && specIsValid(specs.get(4))) {
       emails.add(new Email(resources.getString(R.string.back_end), genericSubject));
     }
 
-    if(specIsValid(specs.get(5)) && specIsValid(specs.get(6))) {
+    if (specIsValid(specs.get(5)) && specIsValid(specs.get(6))) {
       emails.add(new Email(resources.getString(R.string.mobile), genericSubject));
     }
 
-    if(emails.size() == 0) {
+    if (emails.size() == 0) {
       emails.add(new Email("", genericSubject));
     }
 
     try {
 
-      for(Email email : emails) {
+      for (Email email : emails) {
         SendEmailService.sendEmail(user.getName(), user.getEmail(), email.getSubject(),
             String.format(resources.getString(R.string.generic_email), email.getType()));
       }

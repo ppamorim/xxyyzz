@@ -38,11 +38,11 @@ public class BaseActivity extends AbstractActivity {
   }
 
   /**
-   * Esta alteração evita que o aplicativo
-   * feche sem que o usuário volte para a primeira tela.
+   * Esta alteração evita que o aplicativo feche sem 
+   * que o usuário volte para a primeira tela.
    */
   @Override public void onBackPressed() {
-    if(backToPreviousPage()) {
+    if (backToPreviousPage()) {
       super.onBackPressed();
     }
   }
@@ -67,7 +67,7 @@ public class BaseActivity extends AbstractActivity {
    */
   public void slideToNextPage() {
     int currentItem = viewPager.getCurrentItem();
-    if(currentItem < viewPager.getAdapter().getCount()) {
+    if (currentItem < viewPager.getAdapter().getCount()) {
       currentItem++;
       viewPager.setCurrentItem(currentItem);
     }
@@ -79,7 +79,7 @@ public class BaseActivity extends AbstractActivity {
    */
   public boolean backToPreviousPage() {
     int currentItem = viewPager.getCurrentItem();
-    if(currentItem > 0) {
+    if (currentItem > 0) {
       currentItem--;
       viewPager.setCurrentItem(currentItem);
       return false;
@@ -97,7 +97,7 @@ public class BaseActivity extends AbstractActivity {
     hideKeyboard();
     slideToNextPage();
     Fragment page = ((FragmentPagerItemAdapter) viewPager.getAdapter()).getPage(1);
-    if(page != null && page instanceof UserSpecsFragment) {
+    if (page != null && page instanceof UserSpecsFragment) {
       ((UserSpecsFragment) page).notifyUser(user);
     }
   }
@@ -115,7 +115,7 @@ public class BaseActivity extends AbstractActivity {
    * Esconde o dialogo de carregamento
    */
   public void hideLoading() {
-    if(progressDialog != null) {
+    if (progressDialog != null) {
       progressDialog.hide();
     }
     progressDialog = null;
