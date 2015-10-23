@@ -37,8 +37,8 @@ public class BaseActivity extends AbstractActivity {
     configViewPager();
   }
 
-  /**
-   * Esta alteração evita que o aplicativo feche sem 
+/**
+   * Esta alteração evita que o aplicativo feche sem
    * que o usuário volte para a primeira tela.
    */
   @Override public void onBackPressed() {
