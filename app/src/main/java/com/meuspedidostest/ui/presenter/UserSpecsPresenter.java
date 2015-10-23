@@ -1,6 +1,5 @@
 package com.meuspedidostest.ui.presenter;
 
-import android.content.Context;
 import com.meuspedidostest.domain.model.User;
 import com.meuspedidostest.ui.view.SpecView;
 import java.util.ArrayList;

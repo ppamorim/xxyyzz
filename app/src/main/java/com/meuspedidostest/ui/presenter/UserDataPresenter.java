@@ -21,7 +21,6 @@ public interface UserDataPresenter extends Presenter {
     boolean isReady();
     void onUserSuccess(User user);
     void onEmptyName();
-    void onEmptyEmail();
     void onInvalidEmail();
   }
 }

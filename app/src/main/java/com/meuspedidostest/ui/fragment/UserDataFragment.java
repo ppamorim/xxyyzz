@@ -84,10 +84,6 @@ public class UserDataFragment extends AbstractFragment implements UserDataPresen
     name.setError(getResources().getString(R.string.empty_name_error));
   }
 
-  @Override public void onEmptyEmail() {
-    email.setError(getResources().getString(R.string.empty_email_error));
-  }
-
   @Override public void onInvalidEmail() {
     email.setError(getResources().getString(R.string.invalidate_email_error));
   }

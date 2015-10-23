@@ -1,8 +1,5 @@
 package com.meuspedidostest.domain.interaction;
 
-import android.content.Context;
-import android.content.res.Resources;
-import com.meuspedidostest.R;
 import com.meuspedidostest.domain.model.Email;
 import com.meuspedidostest.domain.model.Spec;
 import com.meuspedidostest.domain.model.User;
@@ -10,7 +7,6 @@ import com.meuspedidostest.domain.service.SendEmailService;
 import com.meuspedidostest.executor.Interactor;
 import com.meuspedidostest.executor.InteractorExecutor;
 import com.meuspedidostest.executor.MainThread;
-import com.meuspedidostest.ui.view.SpecView;
 import java.util.ArrayList;
 import javax.inject.Inject;
 

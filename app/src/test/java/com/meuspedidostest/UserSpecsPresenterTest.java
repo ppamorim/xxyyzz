@@ -3,6 +3,7 @@ package com.meuspedidostest;
 import android.content.Context;
 import com.meuspedidostest.domain.interaction.GetEmailSender;
 import com.meuspedidostest.domain.interaction.GetEmailSenderImpl;
+import com.meuspedidostest.domain.model.Spec;
 import com.meuspedidostest.domain.model.User;
 import com.meuspedidostest.executor.InteractorExecutor;
 import com.meuspedidostest.executor.MainThread;
@@ -22,6 +23,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 public class UserSpecsPresenterTest {
 
   @Mock ArrayList<String> types;
+
+  @Mock ArrayList<String> specs;
 
   @Mock User user;
 
@@ -72,9 +75,13 @@ public class UserSpecsPresenterTest {
 
     Mockito.when(types.get(0)).thenReturn("Mobile");
 
+    Mockito.when(specs.get(0)).thenReturn("Java");
+    Mockito.when(specs.get(1)).thenReturn("Swift");
+
     userSpecsPresenter.setContentEmail("teste");
     userSpecsPresenter.setSubject("pp.amorim@hotmail.com");
     userSpecsPresenter.setTypes((String[]) types.toArray());
+    userSpecsPresenter.setSpecs((String[]) specs.toArray());
     userSpecsPresenter.setUser(user);
     userSpecsPresenter.setView(view);
     userSpecsPresenter.initialize();

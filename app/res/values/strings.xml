@@ -20,7 +20,6 @@
 
   <!-- MENSAGENS DE ERRO -->
   <string name="empty_name_error">Digite o seu nome</string>
-  <string name="empty_email_error">Digite o seu email</string>
   <string name="invalidate_email_error">Email inválido</string>
 
   <!-- STATUS EMAIL -->
