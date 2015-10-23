@@ -45,22 +45,33 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
 
   /**
    * Configura e inicializa a thread de envio de email,
+   * adquire o valor de cada conhecimento do usuário,
    * informando os dados do usuário e os seus conhecimentos.
    */
   @Override public void initialize() {
-    getEmailSender.setContext(context);
-    getEmailSender.setUser(user);
-    getEmailSender.setSpecView(specViews);
-    getEmailSender.execute(new GetEmailSender.Callback() {
+    if(user != null) {
+      ArrayList<Spec> specs = new ArrayList<>();
 
-      @Override public void onEmailCreated() {
-        notifySendEmailSuccess();
+      for (SpecView specView : specViews) {
+        Spec spec = specView.getSpec();
+        spec.setRate(specView.getRate());
+        specs.add(spec);
       }
 
-      @Override public void onEmailError() {
-        notifySendEmailFail();
-      }
-    });
+      getEmailSender.setContext(context);
+      getEmailSender.setUser(user);
+      getEmailSender.setSpecView(specs);
+      getEmailSender.execute(new GetEmailSender.Callback() {
+
+        @Override public void onEmailCreated() {
+          notifySendEmailSuccess();
+        }
+
+        @Override public void onEmailError() {
+          notifySendEmailFail();
+        }
+      });
+    }
   }
 
   @Override public void resume() { }

@@ -23,6 +23,8 @@ public class UserSpecsPresenterTest {
 
   @Mock UserSpecsPresenter.View view;
 
+  @Mock GetEmailSender.Callback callback;
+
   InteractorExecutor interactorExecutor;
   MainThread mainThread;
   GetEmailSender getEmailSender;
@@ -48,7 +50,7 @@ public class UserSpecsPresenterTest {
 
   @Test public void givenNullUserWhenRunThenVerifyInteractions() {
     getEmailSender.setUser(null);
-    //getEmailSender.execute();
+    getEmailSender.execute(callback);
   }
 
   @Test public void givenNullUserWhenInitializeThenVerifyZeroInteractionsOnView() {
@@ -57,18 +59,18 @@ public class UserSpecsPresenterTest {
     Mockito.verifyZeroInteractions(view);
   }
 
-  //@Test public void
-  //givenViewReadyAndUserWithEmailAndNameWhenInitializeThenVerifyViewOnUserSuccessWithUser() {
-  //  Mockito.when(view.isReady()).thenReturn(true);
-  //
-  //  Mockito.when(user.getName()).thenReturn("Pedro");
-  //  Mockito.when(user.getEmail()).thenReturn("pp.amorim@hotmail.com");
-  //
-  //  userSpecsPresenter.setUser(user);
-  //  userSpecsPresenter.setView(view);
-  //  userSpecsPresenter.initialize();
-  //
-  //  //Mockito.verify(view).onSpecsLoaded(Mockito.eq(user));
-  //}
+  @Test public void
+  givenViewReadyAndUserWithEmailAndNameWhenInitializeThenVerifyViewOnUserSuccessWithUser() {
+    Mockito.when(view.isReady()).thenReturn(true);
+
+    Mockito.when(user.getName()).thenReturn("Pedro");
+    Mockito.when(user.getEmail()).thenReturn("pp.amorim@hotmail.com");
+
+    userSpecsPresenter.setUser(user);
+    userSpecsPresenter.setView(view);
+    userSpecsPresenter.initialize();
+
+    //Mockito.verify(view).onSpecsLoaded(Mockito.eq(user));
+  }
 
 }

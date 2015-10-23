@@ -31,7 +31,7 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
 
   private final InteractorExecutor interactorExecutor;
   private final MainThread mainThread;
-  private ArrayList<SpecView> specViews;
+  private ArrayList<Spec> specs;
   private User user;
   private Callback callback;
   private Context context;
@@ -48,8 +48,8 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
     this.mainThread = mainThread;
   }
 
-  @Override public void setSpecView(ArrayList<SpecView> specViews) {
-    this.specViews = specViews;
+  @Override public void setSpecView(ArrayList<Spec> specs) {
+    this.specs = specs;
   }
 
   @Override public void setUser(User user) {
@@ -73,13 +73,6 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
   @Override public void run() {
 
     ArrayList<Email> emails = new ArrayList<>();
-    ArrayList<Spec> specs = new ArrayList<>(specViews.size());
-
-    for (SpecView specView : specViews) {
-      Spec spec = specView.getSpec();
-      spec.setRate(specView.getRate());
-      specs.add(spec);
-    }
 
     Resources resources = context.getResources();
     String genericSubject = resources.getString(R.string.feedback_message);
@@ -102,12 +95,22 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
 
     try {
 
+      boolean success = false;
+
       for (Email email : emails) {
-        SendEmailService.sendEmail(user.getName(), user.getEmail(), email.getSubject(),
-            String.format(resources.getString(R.string.generic_email), email.getType()));
+        success = SendEmailService.sendEmail(
+            user.getName(), user.getEmail(), email.getSubject(),
+            String.format(resources.getString(R.string.generic_email),
+                email.getType()));
       }
       emails.clear();
-      notifyEmailCreated();
+
+      if(success) {
+        notifyEmailCreated();
+      } else {
+        notifyEmailError();
+      }
+
     } catch (Exception e) {
       e.printStackTrace();
       notifyEmailError();

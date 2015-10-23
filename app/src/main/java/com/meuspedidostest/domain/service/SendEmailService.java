@@ -35,7 +35,7 @@ public class SendEmailService {
    * @return Status da chamada
    * @throws IOException
    */
-  public static String sendEmail(String name, String to, String subject, String text)
+  public static boolean sendEmail(String name, String to, String subject, String text)
       throws IOException {
 
     OkHttpClient client = new OkHttpClient();
@@ -71,7 +71,7 @@ public class SendEmailService {
         .build();
 
     Response response = client.newCall(request).execute();
-    return response.body().string();
+    return response.isSuccessful();
   }
 
 }
