@@ -34,3 +34,4 @@ Proguard está ativado para ofuscar e reduzir a quantidade de métodos com o obj
 Travis CI é utilizado para analisar o código e verificar se há alguma divergência do estilo de código.
 
 [1]: ./art/logo.png
+[0]: travis_invocation
