@@ -1,7 +1,7 @@
 package com.meuspedidostest.ui.presenter;
 
-import android.util.Patterns;
 import com.meuspedidostest.domain.model.User;
+import com.meuspedidostest.util.Patterns;
 import javax.inject.Inject;
 
 /**
@@ -116,7 +116,7 @@ public class UserDataPresenterImpl implements UserDataPresenter {
    * caso contrário, false.
    */
   private boolean validateEmail(String email) {
-    return !email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    return !email.isEmpty() && Patterns.EMAIL.matcher(email).matches();
   }
 
 }

@@ -3,54 +3,55 @@ package com.meuspedidostest;
 import com.meuspedidostest.domain.model.User;
 import com.meuspedidostest.ui.presenter.UserDataPresenter;
 import com.meuspedidostest.ui.presenter.UserDataPresenterImpl;
-import org.junit.Assert;
+
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.when;
-
+@RunWith(MockitoJUnitRunner.class)
 public class UserDataPresenterTest {
 
   @Mock User user;
 
-  @Test public void testUserDataPresenter() {
+  @Mock UserDataPresenter.View view;
 
-    UserDataPresenterImpl userDataPresenter = new UserDataPresenterImpl();
+  UserDataPresenter userDataPresenter;
 
-    Assert.assertNotNull(userDataPresenter);
+  @Before public void setUp() throws Exception {
+    userDataPresenter = new UserDataPresenterImpl();
+  }
 
-    userDataPresenter.setView(new UserDataPresenter.View() {
-      @Override public boolean isReady() {
-        return true;
-      }
+  @Test(expected = IllegalArgumentException.class)
+  public void whenSetViewWithNullThenExpectedIllegalArgumentException() {
+    userDataPresenter.setView(null);
+  }
 
-      @Override public void onUserSuccess(User user) {
-        Assert.assertNotNull(user);
-      }
+  @Test public void whenSetViewThenVerifyZeroInteractionsOnView() {
+    userDataPresenter.setView(view);
+    Mockito.verifyZeroInteractions(view);
+  }
 
-      @Override public void onEmptyName() {
-      }
+  @Test public void givenNullUserWhenInitializeThenVerifyZeroInteractionsOnView() {
+    userDataPresenter.setUser(null);
+    userDataPresenter.initialize();
+    Mockito.verifyZeroInteractions(view);
+  }
 
-      @Override public void onEmptyEmail() {
-      }
+  @Test public void
+  givenViewReadyAndUserWithEmailAndNameWhenInitializeThenVerifyViewOnUserSuccessWithUser() {
+    Mockito.when(view.isReady()).thenReturn(true);
 
-      @Override public void onInvalidEmail() {
-      }
-    });
-
-    when(user.getName()).thenReturn("Pedro");
-    when(user.getEmail()).thenReturn("pp.amorim@hotmail.com");
+    Mockito.when(user.getName()).thenReturn("Pedro");
+    Mockito.when(user.getEmail()).thenReturn("pp.amorim@hotmail.com");
 
     userDataPresenter.setUser(user);
-
-    Assert.assertNotNull(userDataPresenter);
-    Assert.assertEquals(userDataPresenter.getUser(), user);
-    Assert.assertEquals(userDataPresenter.getUser().getName(), user.getName());
-    Assert.assertEquals(userDataPresenter.getUser().getEmail(), user.getEmail());
-
+    userDataPresenter.setView(view);
     userDataPresenter.initialize();
 
-
+    Mockito.verify(view).onUserSuccess(Mockito.eq(user));
   }
 
 }

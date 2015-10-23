@@ -31,8 +31,7 @@ public class SpecViewTest {
     specView.setSpec(spec);
 
     Assert.assertNotNull(specView);
-    Assert.assertNotNull(specView.getRate());
-    //Assert.assertNotEquals(specView.getRate(), 0); //Retorna sempre 0 pois depende da view
+    Assert.assertEquals(specView.getRate(), 0);
     Assert.assertNotNull(specView.getSpec());
 
     Assert.assertTrue(specView.getSpec() == spec);

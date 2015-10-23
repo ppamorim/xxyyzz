@@ -28,7 +28,7 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
    * Injeta a instancia do interactor de envio de email.
    * @param getEmailSender Referência do interactor de envio de email.
    */
-  @Inject UserSpecsPresenterImpl(GetEmailSender getEmailSender) {
+  @Inject public UserSpecsPresenterImpl(GetEmailSender getEmailSender) {
     this.getEmailSender = getEmailSender;
   }
 

@@ -43,7 +43,7 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
    * @param interactorExecutor Referência da pool de interactions.
    * @param mainThread Referencia da mainThread.
    */
-  @Inject GetEmailSenderImpl(InteractorExecutor interactorExecutor, MainThread mainThread) {
+  @Inject public GetEmailSenderImpl(InteractorExecutor interactorExecutor, MainThread mainThread) {
     this.interactorExecutor = interactorExecutor;
     this.mainThread = mainThread;
   }
