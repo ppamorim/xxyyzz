@@ -69,7 +69,7 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
       getEmailSender.setSpecs(specs);
       getEmailSender.execute(new GetEmailSender.Callback() {
 
-        @Override public void onEmailCreated() {
+        @Override public void onEmailSent() {
           notifySendEmailSuccess();
         }
 

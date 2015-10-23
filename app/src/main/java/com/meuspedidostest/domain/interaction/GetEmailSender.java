@@ -19,7 +19,7 @@ public interface GetEmailSender {
   void setContentEmail(String contentEmail);
   boolean specIsValid(Spec spec);
   interface Callback {
-    void onEmailCreated();
+    void onEmailSent();
     void onEmailError();
   }
 }

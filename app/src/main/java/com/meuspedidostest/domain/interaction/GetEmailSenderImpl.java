@@ -78,7 +78,7 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
    */
   @Override public void run() {
 
-    if(types != null
+    if (types != null
         && subject != null
         && contentEmail != null
         && user != null
@@ -132,7 +132,7 @@ public class GetEmailSenderImpl extends BaseImpl implements Interactor, GetEmail
   private void notifyEmailCreated() {
     mainThread.post(new Runnable() {
       @Override public void run() {
-        callback.onEmailCreated();
+        callback.onEmailSent();
       }
     });
   }

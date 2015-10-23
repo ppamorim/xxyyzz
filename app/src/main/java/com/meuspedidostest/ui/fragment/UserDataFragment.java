@@ -109,11 +109,13 @@ public class UserDataFragment extends AbstractFragment implements UserDataPresen
    * teclado do Android.
    */
   private void configEnterClick() {
-    email.setOnKeyListener(new View.OnKeyListener(){
+    email.setOnKeyListener(new View.OnKeyListener() {
       @Override public boolean onKey(View v, int keyCode, KeyEvent event) {
         switch (keyCode) {
           case KeyEvent.KEYCODE_ENTER:
             onNextClick();
+            break;
+          default:
             break;
         }
         return false;

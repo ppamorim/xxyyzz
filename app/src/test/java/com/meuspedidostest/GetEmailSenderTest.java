@@ -104,10 +104,7 @@ public class GetEmailSenderTest {
     getEmailSender.setTypes(types);
     getEmailSender.execute(callback);
 
-    Mockito.verifyNoMoreInteractions(callback);
-
-    //Mockito.verify(callback).onEmailCreated();
-    //Mockito.verify(callback).onEmailError();
+    Mockito.verify(callback).onEmailSent();
   }
 
 }
