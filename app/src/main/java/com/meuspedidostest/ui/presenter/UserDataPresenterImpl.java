@@ -14,7 +14,7 @@ public class UserDataPresenterImpl implements UserDataPresenter {
   private View view;
   private User user;
 
-  @Inject UserDataPresenterImpl() { }
+  @Inject public UserDataPresenterImpl() { }
 
   /**
    * Verifica se a view é valida.

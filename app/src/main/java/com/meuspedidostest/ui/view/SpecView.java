@@ -21,6 +21,8 @@ public class SpecView {
   @Bind(R.id.language_name) TextView languageName;
   @Bind(R.id.seek_bar) DiscreteSeekBar discreteSeekBar;
 
+  public SpecView() { }
+
   public SpecView(Spec spec) {
     this.spec = spec;
   }
@@ -41,6 +43,10 @@ public class SpecView {
 
   public int getRate() {
     return discreteSeekBar.getProgress();
+  }
+
+  public void setSpec(Spec spec) {
+    this.spec = spec;
   }
 
   public Spec getSpec() {
