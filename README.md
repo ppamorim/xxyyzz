@@ -15,8 +15,10 @@ Mantive a mínima quantidade possível de bibliotecas no projeto, no entanto, ut
 # Bibliotecas
 
  - Appcompat: Provém de bibliotecas padrões de suporte(Toolbar, ViewCompat...)
- - suport.Design: Fornece views Material Design 
- - Butterknife: Inject de view menos verbosa
+ - suport-design: Fornece views Material Design
+ - support-annotations: Conector para testes unitários
+ - Dagger 2: Injeção de dependências
+ - ButterKnife: Inject de view menos verbosa
  - Square OkHttp: Requests Http
  - SmartTabLayout: Fornece uma barra superior e facilita a criação de ViewPager
  - Discrete-SeekBar: Barra de avaliação Material Design

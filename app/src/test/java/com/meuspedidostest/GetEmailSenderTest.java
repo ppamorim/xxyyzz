@@ -14,7 +14,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.stubbing.Answer;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GetEmailSenderTest {
@@ -97,6 +99,16 @@ public class GetEmailSenderTest {
 
     Mockito.when(types.get(0)).thenReturn("Mobile");
 
+    Mockito.doAnswer(new Answer() {
+      @Override
+      public Object answer(InvocationOnMock invocation) throws Throwable {
+        Object[] args = invocation.getArguments();
+        GetEmailSender.Callback callback = (GetEmailSender.Callback) args[0];
+        callback.onEmailError();
+        return null;
+      }
+    }).when(getEmailSender).execute(Mockito.any(GetEmailSender.Callback.class));
+
     getEmailSender.setUser(user);
     getEmailSender.setSpecs(specs);
     getEmailSender.setSubject("pp.amorim@hotmail.com");
@@ -104,7 +116,7 @@ public class GetEmailSenderTest {
     getEmailSender.setTypes(types);
     getEmailSender.execute(callback);
 
-    Mockito.verify(callback).onEmailSent();
+    Mockito.verify(callback).onEmailError();
   }
 
 }
