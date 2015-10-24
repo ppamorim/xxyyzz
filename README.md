@@ -12,6 +12,12 @@
 Neste projeto foi utilizado o padrão MVP (Model-View-Presenter) e injeção de dependências utilizando o pré processador Dagger 2.
 Mantive a mínima quantidade possível de bibliotecas no projeto, no entanto, utilizei as melhores e mais atualizadas.
 
+#ProGuard
+
+No momento de desenvolvimento da aplicação, o ProGuard está desativado por problemas de uso com os testes unitários. Porém em ambiente de produção ele é ativado sem problemas.
+
+Para gerar o APK com ProGuard, observe a branch ProGuard.
+
 # Bibliotecas
 
  - Appcompat: Provém de bibliotecas padrões de suporte(Toolbar, ViewCompat...)
