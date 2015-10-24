@@ -49,7 +49,7 @@ public class UserSpecsPresenterImpl implements UserSpecsPresenter {
    * informando os dados do usuário e os seus conhecimentos.
    */
   @Override public void initialize() {
-    if(user != null
+    if (user != null
         && specViews != null
         && contentEmail != null
         && types != null

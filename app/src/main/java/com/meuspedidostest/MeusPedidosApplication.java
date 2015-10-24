@@ -19,7 +19,7 @@ public class MeusPedidosApplication extends Application {
   @Override public void onCreate() {
     super.onCreate();
     initializeDependencyInjector().inject(this);
-    LeakCanary.install(this);
+    //LeakCanary.install(this); Ferramenta não utilizada durante produção
   }
 
   /**
