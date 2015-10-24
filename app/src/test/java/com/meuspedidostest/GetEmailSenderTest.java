@@ -87,7 +87,41 @@ public class GetEmailSenderTest {
     Mockito.verifyZeroInteractions(callback);
   }
 
-  @Test public void whenSetUserThenVerifyZeroInteractionsOnCallback() {
+  @Test public void
+  givenViewReadyAndUserWithEmailAndNameWhenInitializeThenVerifyViewOnSendEmailSuccess() {
+
+    Mockito.when(user.getName()).thenReturn("Pedro");
+
+    Mockito.when(spec.getId()).thenReturn(2);
+    Mockito.when(spec.getName()).thenReturn("João");
+    Mockito.when(spec.getRate()).thenReturn(10);
+
+    Mockito.when(specs.get(0)).thenReturn(spec);
+
+    Mockito.when(types.get(0)).thenReturn("Mobile");
+
+    Mockito.doAnswer(new Answer() {
+      @Override
+      public Object answer(InvocationOnMock invocation) throws Throwable {
+        Object[] args = invocation.getArguments();
+        GetEmailSender.Callback callback = (GetEmailSender.Callback) args[0];
+        callback.onEmailSent();
+        return null;
+      }
+    }).when(getEmailSender).execute(Mockito.any(GetEmailSender.Callback.class));
+
+    getEmailSender.setUser(user);
+    getEmailSender.setSpecs(specs);
+    getEmailSender.setSubject("pp.amorim@hotmail.com");
+    getEmailSender.setContentEmail("teste");
+    getEmailSender.setTypes(types);
+    getEmailSender.execute(callback);
+
+    Mockito.verify(callback).onEmailSent();
+  }
+
+  @Test public void
+  givenViewReadyAndUserWithEmailAndNameWhenInitializeThenVerifyViewOnSendEmailFail() {
 
     Mockito.when(user.getName()).thenReturn("Pedro");
 
